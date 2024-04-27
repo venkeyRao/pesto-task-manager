@@ -1,6 +1,6 @@
-# Vite-React With Authentication and Task CRUD
+# React With Authentication and Task CRUD
 
-This is a very simple Vite-React app that uses a Nest.js Backend API to authenticate and login users. Users can register and create an account. Users can logout aswell. Users can List, Create, Update, View and Delete Tasks as Well and Filter tasks
+This is a very simple React app that uses a Nest.js Backend API to authenticate and login users. Users can register and create an account. Users can logout aswell. Users can List, Create, Update, View and Delete Tasks as Well and Filter tasks
 
 ## Dependencies:
 
@@ -21,7 +21,7 @@ This is a very simple Vite-React app that uses a Nest.js Backend API to authenti
 ## Installation
 
 ```bash
-cd pesto-task-fe
+cd frontend
 npm install
 npm run dev
 ```
