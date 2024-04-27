@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+enum TaskStatus {
+    TO_DO
+    IN_PROGRESS
+    DONE
+}
+
+model Task {
+    id          String     @id @default(auto()) @map("_id") @db.ObjectId
+    title       String
+    description String?
+    status      TaskStatus @default(TO_DO)
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @updatedAt
+
+    @@map("tasks")
+}
+enum TokenType {
+  PASSWORD_RECOVERY
+  VERIFY_EMAIL
+  JWT
+}
+
+model Token {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  token     String
+  expiry    DateTime
+  tokenType TokenType
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([email, tokenType])
+  @@map("tokens")
+}
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+model User {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  email     String     @unique
+  name      String
+  password  String
+  status    UserStatus @default(ACTIVE)
+  deletedAt DateTime?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@map("users")
+}

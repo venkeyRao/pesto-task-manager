@@ -1,0 +1,18 @@
+enum TokenType {
+  PASSWORD_RECOVERY
+  VERIFY_EMAIL
+  JWT
+}
+
+model Token {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  token     String
+  expiry    DateTime
+  tokenType TokenType
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([email, tokenType])
+  @@map("tokens")
+}

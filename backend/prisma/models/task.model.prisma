@@ -1,0 +1,16 @@
+enum TaskStatus {
+    TO_DO
+    IN_PROGRESS
+    DONE
+}
+
+model Task {
+    id          String     @id @default(auto()) @map("_id") @db.ObjectId
+    title       String
+    description String?
+    status      TaskStatus @default(TO_DO)
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @updatedAt
+
+    @@map("tasks")
+}
