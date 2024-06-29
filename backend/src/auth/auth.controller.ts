@@ -4,11 +4,10 @@ import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
 import { SignupDto } from "./dto/signup.dto";
 import { RefreshTokenGuard } from "../common/guards/refreshToken.guard";
-import { ConfigService } from "@nestjs/config";
 
 @Controller("v1/auth")
 export class AuthController {
-  constructor(private authService: AuthService, private readonly configService: ConfigService) {}
+  constructor(private authService: AuthService) {}
 
   @Post("signup")
   signup(@Body() createAuthDto: SignupDto) {
