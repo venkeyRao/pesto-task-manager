@@ -45,53 +45,50 @@ This guide provides detailed instructions on how to download, install, and run t
 
 1. **Clone the Repository**:
 
-   \`\`\`bash
+   ```bash
    git clone <repository-url>
    cd backend
-   \`\`\`
+   ```
 
 2. **Start MongoDB and Prisma Services using Docker**:
 
-   \`\`\`bash
+   ```bash
    docker-compose up
-   \`\`\`
+   ```
 
 3. **Install Dependencies**:
 
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 ### Running the Backend
 
 - **Development Mode**:
 
-  \`\`\`bash
+  ```bash
   npm run start
-  \`\`\`
+  ```
 
 - **Watch Mode**:
 
-  \`\`\`bash
+  ```bash
   npm run start:dev
-  \`\`\`
+  ```
 
 ### Testing the Backend
 
-\`\`\`bash
+- **Unit tests**:
 
-# Unit tests
+  ```bash
+  npm run test
+  ```
 
-npm run test
+- **Test coverage**:
 
-# E2E tests
-
-npm run test:e2e
-
-# Test coverage
-
-npm run test:cov
-\`\`\`
+  ```bash
+  npm run test:cov
+  ```
 
 ### Accessing the API
 
@@ -108,21 +105,21 @@ The Postman collection can be found in \`PESTO.postman_collection.json\`.
 
 1. **Navigate to the Frontend Directory**:
 
-   \`\`\`bash
+   ```bash
    cd frontend
-   \`\`\`
+   ```
 
 2. **Install Dependencies**:
 
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 3. **Start the Development Server**:
 
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
 
 ### Accessing the Application
 
