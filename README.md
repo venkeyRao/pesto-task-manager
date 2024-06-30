@@ -4,7 +4,7 @@
 
 Task Manager is a simple task management application that allows users to create, update, and delete tasks. Users can view a list of tasks and filter them by status.
 
-This project was created to showcase my full-stack coding and application architecture skills. For a detailed assessment and scoring of the project, please refer to Detailed-Report.pdf
+This project was created to showcase my full-stack coding and application architecture skills. For a detailed assessment and scoring of the project, please refer to Detailed-Report.pdf.
 
 ## Features
 
@@ -18,10 +18,14 @@ This project was created to showcase my full-stack coding and application archit
 - **MongoDB**: A NoSQL database, hosted in a Docker container.
 - **Prisma ORM**: Object Relational Mapping tool to manage database schema and transactions.
 - **JWT**: JSON Web Tokens for authentication and authorization.
+- **UnitTests**: Each Module is tested using built-in Jest. Refer to .spec.ts files in each module.
 
 ### Front-End Technologies
 
-- **React.js, Axios, Bootstrap, React Router**
+- **React.js**
+- **Axios**
+- **Bootstrap**
+- **React Router**
 
 ## Download and Setup Guide
 
@@ -41,39 +45,62 @@ This guide provides detailed instructions on how to download, install, and run t
 
 1. **Clone the Repository**:
 
-   ```bash
+   \`\`\`bash
    git clone <repository-url>
    cd backend
-   ```
+   \`\`\`
 
 2. **Start MongoDB and Prisma Services using Docker**:
 
-   ```bash
+   \`\`\`bash
    docker-compose up
-   ```
+   \`\`\`
 
 3. **Install Dependencies**:
-   ```bash
+
+   \`\`\`bash
    npm install
-   ```
+   \`\`\`
 
 ### Running the Backend
 
 - **Development Mode**:
 
-  ```bash
+  \`\`\`bash
   npm run start
-  ```
+  \`\`\`
 
 - **Watch Mode**:
-  ```bash
+
+  \`\`\`bash
   npm run start:dev
-  ```
+  \`\`\`
+
+### Testing the Backend
+
+\`\`\`bash
+
+# Unit tests
+
+npm run test
+
+# E2E tests
+
+npm run test:e2e
+
+# Test coverage
+
+npm run test:cov
+\`\`\`
 
 ### Accessing the API
 
 Open your browser and navigate to:
 [https://127.0.0.1:3333/v1](https://localhost:3333/v1)
+
+### Postman Collection
+
+The Postman collection can be found in \`PESTO.postman_collection.json\`.
 
 ## Frontend Setup
 
@@ -81,20 +108,21 @@ Open your browser and navigate to:
 
 1. **Navigate to the Frontend Directory**:
 
-   ```bash
+   \`\`\`bash
    cd frontend
-   ```
+   \`\`\`
 
 2. **Install Dependencies**:
 
-   ```bash
+   \`\`\`bash
    npm install
-   ```
+   \`\`\`
 
 3. **Start the Development Server**:
-   ```bash
+
+   \`\`\`bash
    npm run dev
-   ```
+   \`\`\`
 
 ### Accessing the Application
 

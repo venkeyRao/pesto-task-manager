@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "b77661e2-a11f-465c-a92d-189571f5d87d",
+		"name": "PESTO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26342544",
+		"_collection_link": "https://interstellar-desert-203153.postman.co/workspace/Legitify-MVP-V1~5a667e24-80dc-42a0-9557-97b88930a3d1/collection/26342544-b77661e2-a11f-465c-a92d-189571f5d87d?action=share&source=collection_link&creator=26342544"
+	},
+	"item": [
+		{
+			"name": "SIgnUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"Smvr@5654\",\n  \"passwordConfirmation\": \"Smvr@5654\",\n  \"name\": \"Team\",\n  \"email\": \"v.rao56543@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/signup",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"email\": \"v.rao5654@gmail.com\", \"password\": \"Smvr@5654\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/signin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"signin"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Tasks",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {},
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjJiZTAyMmViMzFhYWM1ZDQ4OTNiMTUiLCJ1c2VybmFtZSI6InYucmFvNTY1NEBnbWFpbC5jb20iLCJpYXQiOjE3MTQxOTE3MDUsImV4cCI6MTcxNDE5NTMwNX0.-3rw_Onx5C8uFCgYqhftpIcA71EUNO59mtUluWVDrjQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/task?status=TO_DO",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"task"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "TO_DO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task Details",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {},
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjJiZTAyMmViMzFhYWM1ZDQ4OTNiMTUiLCJ1c2VybmFtZSI6InYucmFvNTY1NEBnbWFpbC5jb20iLCJpYXQiOjE3MTQxOTE3MDUsImV4cCI6MTcxNDE5NTMwNX0.-3rw_Onx5C8uFCgYqhftpIcA71EUNO59mtUluWVDrjQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/task/662c7e438742ab73688f8b73",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"task",
+						"662c7e438742ab73688f8b73"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjJiZTAyMmViMzFhYWM1ZDQ4OTNiMTUiLCJ1c2VybmFtZSI6InYucmFvNTY1NEBnbWFpbC5jb20iLCJpYXQiOjE3MTQxOTE3MDUsImV4cCI6MTcxNDE5NTMwNX0.-3rw_Onx5C8uFCgYqhftpIcA71EUNO59mtUluWVDrjQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"title\": \"All Task API\", \"description\": \"write an API to get ALL tasks\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/task",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"task"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjJiZTAyMmViMzFhYWM1ZDQ4OTNiMTUiLCJ1c2VybmFtZSI6InYucmFvNTY1NEBnbWFpbC5jb20iLCJpYXQiOjE3MTQxOTE3MDUsImV4cCI6MTcxNDE5NTMwNX0.-3rw_Onx5C8uFCgYqhftpIcA71EUNO59mtUluWVDrjQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"description\": \"this was updated!\",\n \"status\": \"TO_DO\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/task/662c7e7e8742ab73688f8b7a",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"task",
+						"662c7e7e8742ab73688f8b7a"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjJiZTAyMmViMzFhYWM1ZDQ4OTNiMTUiLCJ1c2VybmFtZSI6InYucmFvNTY1NEBnbWFpbC5jb20iLCJpYXQiOjE3MTQxOTE3MDUsImV4cCI6MTcxNDE5NTMwNX0.-3rw_Onx5C8uFCgYqhftpIcA71EUNO59mtUluWVDrjQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/task/662c7e438742ab73688f8b78",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"task",
+						"662c7e438742ab73688f8b78"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
