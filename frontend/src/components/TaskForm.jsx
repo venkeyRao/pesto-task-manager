@@ -1,7 +1,7 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axiosClient from "../axios-client";
-import "../css/taskForm.css";
+import { Box, Button, CircularProgress, TextField, Typography, MenuItem, Select, FormControl, InputLabel, Alert } from '@mui/material';
 
 const TASK_STATUSES = {
   TO_DO: "To Do",
@@ -65,47 +65,56 @@ export default function TaskForm() {
   };
 
   return (
-    <div className="card animated fadeInDown">
-      <h3>{id ? `Update Task` : "New Task"}</h3>
-      {loading && <div className="text-center">Loading...</div>}
-      {errors.fetch && <div className="alert">{errors.fetch}</div>}
+    <Box sx={{ maxWidth: 600, margin: '0 auto', padding: 2, boxShadow: 1, borderRadius: 1, backgroundColor: '#ffffff' }}>
+      <Typography variant="h4" component="h1" sx={{ marginBottom: 2 }}>
+        {id ? `Update Task` : "New Task"}
+      </Typography>
+      {loading && <Box sx={{ textAlign: 'center' }}><CircularProgress /></Box>}
+      {errors.fetch && <Alert severity="error">{errors.fetch}</Alert>}
       {!loading && (
         <form onSubmit={onSubmit}>
-          <div className="input-group">
-            <input
-              type="text"
-              value={task.title}
-              onChange={ev => setTask({ ...task, title: ev.target.value })}
-              placeholder="Title"
-            />
-            {errors.title && <div className="alert">{errors.title}</div>}
-          </div>
-          <div className="input-group">
-            <textarea
-              value={task.description}
-              onChange={ev => setTask({ ...task, description: ev.target.value })}
-              placeholder="Description"
-              maxLength="250"
-            />
-            {errors.description && <div className="alert">{errors.description}</div>}
-          </div>
-          <div className="input-group">
-            <select
-              className="status-filter"
+          <TextField
+            fullWidth
+            label="Title"
+            value={task.title}
+            onChange={ev => setTask({ ...task, title: ev.target.value })}
+            margin="normal"
+            required
+            error={!!errors.title}
+            helperText={errors.title}
+          />
+          <TextField
+            fullWidth
+            label="Description"
+            value={task.description}
+            onChange={ev => setTask({ ...task, description: ev.target.value })}
+            margin="normal"
+            required
+            error={!!errors.description}
+            helperText={errors.description}
+            multiline
+            rows={4}
+          />
+          <FormControl fullWidth margin="normal" required error={!!errors.status}>
+            <InputLabel>Status</InputLabel>
+            <Select
               value={task.status}
               onChange={ev => setTask({ ...task, status: ev.target.value })}
+              label="Status"
             >
-              <option value="">Select Status</option>
+              <MenuItem value="">Select Status</MenuItem>
               {Object.entries(TASK_STATUSES).map(([key, value]) => (
-                <option key={key} value={key}>{value}</option>
+                <MenuItem key={key} value={key}>{value}</MenuItem>
               ))}
-            </select>
-            {errors.status && <div className="alert">{errors.status}</div>}
-          </div>
-          <button type="submit" className="task-btn btn-save">Save</button>
-          <Link className="task-btn btn-cancel" to="/">Cancel</Link>
+            </Select>
+            {errors.status && <Typography variant="body2" color="error">{errors.status}</Typography>}
+          </FormControl>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
+            <Button type="submit" variant="contained" color="primary">Save</Button>
+            <Button component={Link} to="/" variant="outlined">Cancel</Button>
+          </Box>
         </form>
       )}
-    </div>
+    </Box>
   );
 }

@@ -24,7 +24,7 @@ This project was created to showcase my full-stack coding and application archit
 
 - **React.js**
 - **Axios**
-- **Bootstrap**
+- **Material UI**
 - **React Router**
 
 ## Download and Setup Guide

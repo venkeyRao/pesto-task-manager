@@ -1,13 +1,16 @@
 # React With Authentication and Task CRUD
 
-This is a very simple React app that uses a Nest.js Backend API to authenticate and login users.
-Users can register and create an account. Users can login, logout aswell. 
-Users can List, Create, Update, View and Delete Tasks as Well and Filter tasks
+This is a simple React app that uses a Nest.js backend API to authenticate and manage users. The app allows users to:
+
+1. Register and create an account
+2. Login and logout
+3. List, create, update, view, and delete tasks
+4. Filter tasks
 
 ## Dependencies:
 
 1. axios = 1.3.4
-2. bootstrap = 5.2.3
+2. material-UI = 5.15.2
 3. react = 18.2.0
 4. react-dom = 18.2.0
 5. react-router-dom = 6.9.0

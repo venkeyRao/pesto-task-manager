@@ -1,8 +1,10 @@
+import { Box } from '@mui/material';
+
 const GuestLayout = ({ children }) => {
   return (
-    <div className="guest-layout">
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {children}
-    </div>
+    </Box>
   );
 };
 

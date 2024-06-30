@@ -1,5 +1,5 @@
 {
-  "name": "pesto",
+  "name": "task-manager",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,11 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.21",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "axios": "^1.3.4",
-    "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0",
+    "react-router-dom": "^6.24.0",
+    "styled-components": "^6.1.11",
     "vite-plugin-mkcert": "^1.13.3"
   },
   "devDependencies": {

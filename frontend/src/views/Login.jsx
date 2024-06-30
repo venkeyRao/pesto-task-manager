@@ -2,7 +2,7 @@ import React, { createRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosClient from '../axios-client';
 import { useStateContext } from '../context/ContextProvider';
-import '../css/login.css'; 
+import { Box, Button, Container, TextField, Typography, Alert } from '@mui/material';
 
 const Login = () => {
   const emailRef = createRef();
@@ -49,34 +49,41 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="form-container">
-        <form className="row g-3" onSubmit={onSubmit}>
-          {message && (
-            <div className="alert alert-danger form-message" role="alert">
-              {message}
-            </div>
-          )}
-          <h1 className="form-title">Login To Your Account</h1>
-          <div className="col-12">
-            <label htmlFor="email" className="form-label">Email</label>
-            <input ref={emailRef} type="email" className="form-control" id="email" placeholder="Email" required />
-            {errors.email && <div className="form-message text-danger">{errors.email}</div>}
-          </div>
-          <div className="col-12">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input ref={passwordRef} type="password" className="form-control" id="password" placeholder="Password" required />
-            {errors.password && <div className="form-message text-danger">{errors.password}</div>}
-          </div>
-          <div className="col-12">
-            <button type="submit" className="btn btn-primary w-100">Login</button>
-          </div>
-          <div className="text-center">
-            <p className="mt-3">Not registered? <Link to="/signup" className="text-info">Create an account</Link></p>
-          </div>
-        </form>
-      </div>
-    </div>
+    <Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f0f0' }}>
+      <Container maxWidth="xs">
+        <Box sx={{ padding: 4, boxShadow: 1, borderRadius: 1, backgroundColor: '#ffffff' }}>
+          <form onSubmit={onSubmit}>
+            {message && <Alert severity="error" sx={{ marginBottom: 2 }}>{message}</Alert>}
+            <Typography variant="h4" component="h1" sx={{ marginBottom: 2 }}>Login</Typography>
+            <TextField
+              fullWidth
+              label="Email"
+              inputRef={emailRef}
+              margin="normal"
+              required
+              error={!!errors.email}
+              helperText={errors.email}
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              type="password"
+              inputRef={passwordRef}
+              margin="normal"
+              required
+              error={!!errors.password}
+              helperText={errors.password}
+            />
+            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ marginTop: 2 }}>
+              Login
+            </Button>
+            <Typography variant="body2" align="center" sx={{ marginTop: 2 }}>
+              Not registered? <Link to="/signup" style={{ color: '#1976d2' }}>Create an account</Link>
+            </Typography>
+          </form>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

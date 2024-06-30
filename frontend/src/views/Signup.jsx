@@ -2,7 +2,7 @@ import React, { createRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosClient from '../axios-client';
 import { useStateContext } from '../context/ContextProvider';
-import '../css/login.css'; 
+import { Box, Button, Container, TextField, Typography, Alert } from '@mui/material';
 
 const Signup = () => {
   const nameRef = createRef();
@@ -50,39 +50,59 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
-      <div className="form-container">
-        <form className="row g-3" onSubmit={onSubmit}>
-          <h1 className="form-title">Sign Up</h1>
-          <div className="col-12">
-            <label htmlFor="name" className="form-label">Name</label>
-            <input ref={nameRef} type="text" className="form-control" id="name" placeholder="Name" required />
-            {errors.name && <div className="form-message text-danger">{errors.name}</div>}
-          </div>
-          <div className="col-12">
-            <label htmlFor="email" className="form-label">Email</label>
-            <input ref={emailRef} type="email" className="form-control" id="email" placeholder="Email" required />
-            {errors.email && <div className="form-message text-danger">{errors.email}</div>}
-          </div>
-          <div className="col-12">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input ref={passwordRef} type="password" className="form-control" id="password" placeholder="Password" required />
-            {errors.password && <div className="form-message text-danger">{errors.password}</div>}
-          </div>
-          <div className="col-12">
-            <label htmlFor="passwordConfirmation" className="form-label">Confirm Password</label>
-            <input ref={passwordConfirmationRef} type="password" className="form-control" id="passwordConfirmation" placeholder="Repeat Password" required />
-            {errors.passwordConfirmation && <div className="form-message text-danger">{errors.passwordConfirmation}</div>}
-          </div>
-          <div className="col-12">
-            <button type="submit" className="btn btn-primary w-100">Sign Up</button>
-          </div>
-          <div className="text-center">
-            <p className="mt-3">Already registered? <Link to="/login" className="text-info">Sign In</Link></p>
-          </div>
-        </form>
-      </div>
-    </div>
+    <Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f0f0' }}>
+      <Container maxWidth="xs">
+        <Box sx={{ padding: 4, boxShadow: 1, borderRadius: 1, backgroundColor: '#ffffff' }}>
+          <form onSubmit={onSubmit}>
+            <Typography variant="h4" component="h1" sx={{ marginBottom: 2 }}>Sign Up</Typography>
+            <TextField
+              fullWidth
+              label="Name"
+              inputRef={nameRef}
+              margin="normal"
+              required
+              error={!!errors.name}
+              helperText={errors.name}
+            />
+            <TextField
+              fullWidth
+              label="Email"
+              inputRef={emailRef}
+              margin="normal"
+              required
+              error={!!errors.email}
+              helperText={errors.email}
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              type="password"
+              inputRef={passwordRef}
+              margin="normal"
+              required
+              error={!!errors.password}
+              helperText={errors.password}
+            />
+            <TextField
+              fullWidth
+              label="Confirm Password"
+              type="password"
+              inputRef={passwordConfirmationRef}
+              margin="normal"
+              required
+              error={!!errors.passwordConfirmation}
+              helperText={errors.passwordConfirmation}
+            />
+            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ marginTop: 2 }}>
+              Sign Up
+            </Button>
+            <Typography variant="body2" align="center" sx={{ marginTop: 2 }}>
+              Already registered? <Link to="/login" style={{ color: '#1976d2' }}>Sign In</Link>
+            </Typography>
+          </form>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

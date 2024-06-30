@@ -1,17 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography } from '@mui/material';
+import StyledButton from './styledButton';
 
 function Header({ user, onLogout }) {
   return (
-    <header className="main-header">
-      <div className="header-left">
-        <h3>Task Manager using React</h3>
-      </div>
-      <div className="header-right">
-        Welcome {user ? user : 'Guest'},
-        <Link onClick={onLogout} className="btn-edit" to="#" style={{ marginLeft: '10px', color: 'white' }}>Logout</Link>
-      </div>
-    </header>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          Task Manager using React
+        </Typography>
+        <Typography variant="body1" sx={{ marginRight: 2 }}>
+          Welcome {user ? user : 'Guest'}
+        </Typography>
+        <StyledButton
+          color="inherit"
+          onClick={onLogout}
+          component={Link}
+          to="#"
+        >
+          Logout
+        </StyledButton>
+      </Toolbar>
+    </AppBar>
   );
 }
 
