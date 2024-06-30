@@ -18,7 +18,7 @@ This project was created to showcase my full-stack coding and application archit
 - **MongoDB**: A NoSQL database, hosted in a Docker container.
 - **Prisma ORM**: Object Relational Mapping tool to manage database schema and transactions.
 - **JWT**: JSON Web Tokens for authentication and authorization.
-- **UnitTests**: Each Module is tested using built-in Jest. Refer to .spec.ts files in each module.
+- **Unit Tests**: Each Module is tested using built-in Jest. Refer to .spec.ts files in each module.
 
 ### Front-End Technologies
 
