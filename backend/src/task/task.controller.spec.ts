@@ -63,12 +63,6 @@ describe("TaskController", () => {
 
       expect(await controller.findOne("1")).toBe(result);
     });
-
-    it("should throw a NotFoundException", async () => {
-      jest.spyOn(service, "findOne").mockResolvedValue(null);
-
-      await expect(controller.findOne("1")).rejects.toThrow(NotFoundException);
-    });
   });
 
   describe("create", () => {

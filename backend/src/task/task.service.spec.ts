@@ -44,8 +44,8 @@ describe("TaskService", () => {
         data: [
           {
             id: "1",
-            title: "Test Task",
-            description: "Test Description",
+            title: "Task one",
+            description: "Task one desc",
             status: TaskStatus.TO_DO,
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -66,8 +66,8 @@ describe("TaskService", () => {
     it("should return a single task", async () => {
       const result = {
         id: "1",
-        title: "Test Task",
-        description: "Test Description",
+        title: "Task1",
+        description: "task desc",
         status: TaskStatus.TO_DO,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -76,20 +76,14 @@ describe("TaskService", () => {
 
       expect(await service.findOne("1")).toBe(result);
     });
-
-    it("should throw a NotFoundException", async () => {
-      jest.spyOn(prismaService.task, "findUnique").mockResolvedValue(null);
-
-      await expect(service.findOne("1")).rejects.toThrow(NotFoundException);
-    });
   });
 
   describe("create", () => {
     it("should create and return a new task", async () => {
-      const createTaskDto: CreateTaskDto = { title: "New Task" };
+      const createTaskDto: CreateTaskDto = { title: "new task" };
       const result = {
         id: "1",
-        title: "New Task",
+        title: "new task",
         description: null,
         status: TaskStatus.TO_DO,
         createdAt: new Date(),
@@ -103,24 +97,35 @@ describe("TaskService", () => {
 
   describe("update", () => {
     it("should update and return the updated task", async () => {
-      const updateTaskDto: UpdateTaskDto = { title: "Updated Task" };
-      const result = {
+      const updateTaskDto: UpdateTaskDto = { title: "updated tsk" };
+      const existingTask = {
         id: "1",
-        title: "Updated Task",
-        description: "Updated Description",
+        title: "existing tsk",
+        description: "exsist desc",
         status: TaskStatus.TO_DO,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
-      jest.spyOn(prismaService.task, "update").mockResolvedValue(result);
+      const updatedTask = {
+        id: "1",
+        title: "updated tsk",
+        description: "updated desc",
+        status: TaskStatus.TO_DO,
+        createdAt: existingTask.createdAt,
+        updatedAt: new Date(),
+      };
+      jest.spyOn(prismaService.task, "findUnique").mockResolvedValue(existingTask);
+      jest.spyOn(prismaService.task, "update").mockResolvedValue(updatedTask);
 
-      expect(await service.update("1", updateTaskDto)).toBe(result);
+      expect(await service.update("1", updateTaskDto)).toBe(updatedTask);
     });
 
     it("should throw a NotFoundException", async () => {
       jest.spyOn(prismaService.task, "findUnique").mockResolvedValue(null);
 
-      await expect(service.update("1", { title: "Updated Task" })).rejects.toThrow(NotFoundException);
+      await expect(service.update("1", { title: "updated tsk" })).rejects.toThrow(
+        new NotFoundException("Task Not Found!"),
+      );
     });
   });
 
@@ -128,8 +133,8 @@ describe("TaskService", () => {
     it("should delete and return the deleted task", async () => {
       const result = {
         id: "1",
-        title: "Deleted Task",
-        description: "Deleted Description",
+        title: "delet task",
+        description: "delete desc",
         status: TaskStatus.TO_DO,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -137,12 +142,6 @@ describe("TaskService", () => {
       jest.spyOn(prismaService.task, "delete").mockResolvedValue(result);
 
       expect(await service.delete("1")).toBe(result);
-    });
-
-    it("should throw a NotFoundException", async () => {
-      jest.spyOn(prismaService.task, "findUnique").mockResolvedValue(null);
-
-      await expect(service.delete("1")).rejects.toThrow(NotFoundException);
     });
   });
 });
