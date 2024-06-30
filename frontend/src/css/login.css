@@ -1,0 +1,48 @@
+/* Login and Signup form styles */
+.login-container,
+.signup-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; 
+  color: #333333;
+}
+
+.form-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(230, 134, 134, 0.1); 
+  border-radius: 8px;
+  background-color: #ffffff; 
+}
+
+.form-title {
+  margin-bottom: 1.5rem;
+  color: #333333; 
+}
+
+.form-message {
+  margin-bottom: 1rem;
+  color: red;
+}
+
+.form-control {
+  background-color: #f9f9f9; 
+  color: #333333; 
+}
+
+.btn-primary {
+  background-color: #007bff; 
+  border-color: #007bff; 
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; 
+  border-color: #0056b3; 
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../axios-client";
 import { Link } from "react-router-dom";
-import "../css/default.css";
+import "../css/dashboard.css";
+import TaskTable from "../components/TaskTable";
 
 const STATUS_LABELS = {
   ALL: "All Tasks",
@@ -47,9 +48,11 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-       <div className="header">
-        <h1>Tasks</h1>
-        <div>
+      <header className="page-header">
+        <div className="header-left">
+          <h4>Tasks</h4>
+        </div>
+        <div className="header-right">
           <Link className="btn-add" to="/tasks/new">Add New Task</Link>
           <select className="status-filter" onChange={handleStatusChange} value={statusFilter}>
             {Object.entries(STATUS_LABELS).map(([value, label]) => (
@@ -57,42 +60,8 @@ export default function Dashboard() {
             ))}
           </select>
         </div>
-      </div>
-      <div className="table-card animated fadeInDown">
-        <table className="table">
-          <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-          </thead>
-          {loading ? (
-            <tbody>
-            <tr>
-              <td colSpan="5" className="text-center">Loading...</td>
-            </tr>
-            </tbody>
-          ) : (
-            <tbody>
-            {tasks.map(task => (
-              <tr key={task.id}>
-                <td>{task.id}</td>
-                <td>{task.title}</td>
-                <td>{task.description}</td>
-                <td>{STATUS_LABELS[task.status]}</td>
-                <td>
-                  <Link className="btn-edit" to={`/tasks/${task.id}`}>Edit</Link>
-                  <button className="btn-delete" onClick={() => onDeleteClick(task)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-            </tbody>
-          )}
-        </table>
-      </div>
+      </header>
+      <TaskTable tasks={tasks} loading={loading} onDeleteClick={onDeleteClick} />
     </div>
   );
 }

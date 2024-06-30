@@ -2,6 +2,7 @@ import React, { createRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosClient from '../axios-client';
 import { useStateContext } from '../context/ContextProvider';
+import '../css/login.css'; 
 
 const Signup = () => {
   const nameRef = createRef();
@@ -9,22 +10,8 @@ const Signup = () => {
   const passwordRef = createRef();
   const passwordConfirmationRef = createRef();
   const { setUser, setToken } = useStateContext();
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  const loginSignUpFormStyle = {
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  };
-  const formContainerStyle = {
-    maxWidth: '400px',
-    width: '100%',
-    textAlign: 'center'
-  };
-  const inputContainerStyle = {
-    marginBottom: '1rem', 
-  };
 
   const onSubmit = (ev) => {
     ev.preventDefault();
@@ -36,94 +23,67 @@ const Signup = () => {
       passwordConfirmation: passwordConfirmationRef.current.value,
     };
 
-    axiosClient
-      .post('/auth/signup', payload)
+    axiosClient.post('/auth/signup', payload)
       .then(({ data }) => {
         setUser(data.user.name);
         setToken(data.tokens.accessToken);
-        navigate('/'); 
+        navigate('/');
       })
       .catch((err) => {
         const response = err.response;
-        if (response.data.error) {
-          setErrors(response.data.message);
+        if (response && response.status === 400) {
+          const errorMessages = response.data.message.reduce((acc, errorMessage) => {
+            if (errorMessage.includes('name')) {
+              acc.name = errorMessage;
+            } else if (errorMessage.includes('email')) {
+              acc.email = errorMessage;
+            } else if (errorMessage.includes('password')) {
+              acc.password = errorMessage;
+            } else if (errorMessage.includes('passwordConfirmation')) {
+              acc.passwordConfirmation = errorMessage;
+            }
+            return acc;
+          }, {});
+          setErrors(errorMessages);
         }
       });
   };
 
   return (
-    <div style={loginSignUpFormStyle}>
-      <div style={formContainerStyle}>
-      <form onSubmit={onSubmit}>
-          {errors && (
-            <div className="alert">
-              {Array.isArray(errors) ? (
-                errors.map((error, index) => <p key={index}>{error}</p>) // Array of errors
-              ) : (
-                <p>{errors}</p> 
-              )}
-            </div>
-          )}
-            <h1 className="title">Sign Up</h1>
-            <div className="col-auto" style={inputContainerStyle}>
-              <label htmlFor="name" className="visually-hidden">
-                Name
-              </label>
-              <input
-                ref={nameRef}
-                type="text"
-                className="form-control"
-                placeholder="Name"
-              />
-            </div>
-            <div className="col-auto" style={inputContainerStyle}>
-              <label htmlFor="staticEmail2" className="visually-hidden">
-                Email
-              </label>
-              <input
-                ref={emailRef}
-                type="text"
-                className="form-control"
-                placeholder="Email"
-              />
-            </div>
-            <div className="col-auto" style={inputContainerStyle}>
-              <label htmlFor="inputPassword2" className="visually-hidden">
-                Password
-              </label>
-              <input
-                ref={passwordRef}
-                type="password"
-                className="form-control"
-                placeholder="Password"
-              />
-            </div>
-            <div className="col-auto" style={inputContainerStyle}>
-              <label htmlFor="inputPassword2" className="visually-hidden">
-                Confirm Password
-              </label>
-              <input
-                ref={passwordConfirmationRef}
-                type="password"
-                className="form-control"
-                placeholder="Repeat Password"
-              />
-            </div>
-            <div className="col-auto" style={inputContainerStyle}>
-              <button type="submit" className="btn btn-primary mb-3">
-                Sign Up
-              </button>
-            </div>
-            <div className="text-center">
-              <p className="message">
-                Already registered? <Link to="/login">Sign In</Link>
-              </p>
-            </div>
-          </form>
+    <div className="signup-container">
+      <div className="form-container">
+        <form className="row g-3" onSubmit={onSubmit}>
+          <h1 className="form-title">Sign Up</h1>
+          <div className="col-12">
+            <label htmlFor="name" className="form-label">Name</label>
+            <input ref={nameRef} type="text" className="form-control" id="name" placeholder="Name" required />
+            {errors.name && <div className="form-message text-danger">{errors.name}</div>}
+          </div>
+          <div className="col-12">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input ref={emailRef} type="email" className="form-control" id="email" placeholder="Email" required />
+            {errors.email && <div className="form-message text-danger">{errors.email}</div>}
+          </div>
+          <div className="col-12">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input ref={passwordRef} type="password" className="form-control" id="password" placeholder="Password" required />
+            {errors.password && <div className="form-message text-danger">{errors.password}</div>}
+          </div>
+          <div className="col-12">
+            <label htmlFor="passwordConfirmation" className="form-label">Confirm Password</label>
+            <input ref={passwordConfirmationRef} type="password" className="form-control" id="passwordConfirmation" placeholder="Repeat Password" required />
+            {errors.passwordConfirmation && <div className="form-message text-danger">{errors.passwordConfirmation}</div>}
+          </div>
+          <div className="col-12">
+            <button type="submit" className="btn btn-primary w-100">Sign Up</button>
+          </div>
+          <div className="text-center">
+            <p className="mt-3">Already registered? <Link to="/login" className="text-info">Sign In</Link></p>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
 export default Signup;
-

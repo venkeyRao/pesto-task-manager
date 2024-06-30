@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 
 function Header({ user, onLogout }) {
   return (
-    <header>
-      <div>
-        Task Manager using React
+    <header className="main-header">
+      <div className="header-left">
+        <h3>Task Manager using React</h3>
       </div>
-      <div>
-        Welcome {user ? user : 'Guest'}, 
-        <Link onClick={onLogout} className="btn-edit" href="#" style={{ marginLeft: '10px', color: 'white'}}>Logout</Link>
+      <div className="header-right">
+        Welcome {user ? user : 'Guest'},
+        <Link onClick={onLogout} className="btn-edit" to="#" style={{ marginLeft: '10px', color: 'white' }}>Logout</Link>
       </div>
-      <hr />
     </header>
   );
 }
