@@ -11,6 +11,7 @@ const Signup = () => {
   const passwordConfirmationRef = createRef();
   const { setUser, setToken } = useStateContext();
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
   const onSubmit = (ev) => {
@@ -45,6 +46,8 @@ const Signup = () => {
             return acc;
           }, {});
           setErrors(errorMessages);
+        }else{
+          setMessage(response.data.message);
         }
       });
   };
@@ -54,6 +57,7 @@ const Signup = () => {
       <Container maxWidth="xs">
         <Box sx={{ padding: 4, boxShadow: 1, borderRadius: 1, backgroundColor: '#ffffff' }}>
           <form onSubmit={onSubmit}>
+            {message && <Alert severity="error" sx={{ marginBottom: 2 }}>{message}</Alert>}
             <Typography variant="h4" component="h1" sx={{ marginBottom: 2 }}>Sign Up</Typography>
             <TextField
               fullWidth

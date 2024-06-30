@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -27,9 +27,10 @@ ReactDOM.createRoot(rootElement).render(
     <ContextProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <RouterProvider router={router} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <RouterProvider router={router} />
+        </Suspense>
       </ThemeProvider>
     </ContextProvider>
   </React.StrictMode>
 );
-

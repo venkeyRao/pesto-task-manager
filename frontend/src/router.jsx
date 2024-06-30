@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import Login from "./views/Login";
-import NotFound from "./views/NotFound";
-import Signup from "./views/Signup";
-import Dashboard from "./views/Dashboard";
+import React, { Suspense, lazy } from "react";
 import DefaultLayout from "./layouts/DefaultLayout";
 import GuestLayout from "./layouts/GuestLayout";
-import TaskForm from "./components/TaskForm";
+import NotFound from "./views/NotFound";
+
+const Login = lazy(() => import("./views/Login"));
+const Signup = lazy(() => import("./views/Signup"));
+const Dashboard = lazy(() => import("./views/Dashboard"));
+const TaskForm = lazy(() => import("./components/TaskForm"));
 
 const routes = [
   {
