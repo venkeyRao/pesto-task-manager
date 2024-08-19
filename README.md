@@ -4,7 +4,8 @@
 
 Task Manager is a simple task management application that allows users to create, update, and delete tasks. Users can view a list of tasks and filter them by status.
 
-This project was created to showcase my full-stack coding and application architecture skills. For a detailed assessment and scoring of the project, please refer to Detailed-Report.pdf.
+This project was created to showcase my full-stack coding and application architecture skills. 
+For a detailed assessment and scoring of the project, please refer to Detailed-Report.pdf. Note: The assesment report is outdated some of the imporovements suggested in the report has been implemented. 
 
 ## Features
 
